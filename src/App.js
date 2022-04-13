@@ -5,7 +5,7 @@ import UserAuthenticate from './spotify/components/UserAuthenticate'
 
 function App() {
   let token = localStorage.getItem("token")
-
+  
   return (
     token ? <WelcomeHome/> : <UserAuthenticate/>
   )
