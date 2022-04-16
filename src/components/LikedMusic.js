@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../styles//PlaylistView.css";
+import "../styles/PlaylistView.css";
 import Song from "./SongView";
 import { HOSTNAME } from "../spotify.constants.js";
 
