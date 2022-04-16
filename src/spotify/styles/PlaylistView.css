@@ -1,41 +1,41 @@
 #playlistHeader {
-    display: flex;
+  display: flex;
 }
 
 #image {
-    width: 232px;
-    height: 232px;
+  width: 232px;
+  height: 232px;
 }
 
 #playlistHeaderData {
-    display: flex;
-    align-self:flex-end;
-    flex-direction: column;
-    white-space: nowrap;
-    padding-left: 20px;
+  display: flex;
+  align-self: flex-end;
+  flex-direction: column;
+  white-space: nowrap;
+  padding-left: 20px;
 }
 
-#playlistHeaderData h1{
-    font-size: 50px;
+#playlistHeaderData h1 {
+  font-size: 50px;
 }
 
 #playlistDescription {
-    color: rgb(255, 255, 255, 0.75);
+  color: rgb(255, 255, 255, 0.75);
 }
 
 #playlist {
-    font-weight: 700;
-    margin-bottom: 0;
+  font-weight: 700;
+  margin-bottom: 0;
 }
 
 #ash {
-    flex:0.03
+  flex: 0.03;
 }
 
 #title {
-    flex:0.35
+  flex: 0.35;
 }
 
 #album {
-    flex:0.35
+  flex: 0.35;
 }

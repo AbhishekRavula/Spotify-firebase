@@ -1,13 +1,10 @@
-import React from 'react'
-import WelcomeHome from './spotify/components/Welcome'
-import UserAuthenticate from './spotify/components/UserAuthenticate'
-
+import React from "react";
+import WelcomeHome from "./spotify/components/Welcome";
+import UserAuthenticate from "./spotify/components/UserAuthenticate";
 
 function App() {
-  let token = localStorage.getItem("token")
+  let token = localStorage.getItem("token");
 
-  return (
-    token ? <WelcomeHome/> : <UserAuthenticate/>
-  )
+  return token ? <WelcomeHome /> : <UserAuthenticate />;
 }
-export default App
+export default App;

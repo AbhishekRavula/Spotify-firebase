@@ -1,1 +1,1 @@
-export const HOSTNAME = "https://spotifyclonebackend.herokuapp.com/"
+export const HOSTNAME = "https://spotifyclonebackend.herokuapp.com/";
