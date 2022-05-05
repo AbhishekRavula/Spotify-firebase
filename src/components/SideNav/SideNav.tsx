@@ -98,7 +98,7 @@ const SideNav = () => {
     <div className="sideNavContainer">
       <ul className="sideNavList">
         <li onClick={() => history.push("/")}>
-          <img id="sideNav_logo" src="http://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg" alt="logo"></img>
+          <img className="logo" src="http://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg" alt="logo"></img>
         </li>
         <li className="list" onClick={() => history.push("/")}>
           <div>

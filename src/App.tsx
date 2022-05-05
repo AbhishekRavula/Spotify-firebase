@@ -1,16 +1,26 @@
-import React from "react";
-import WelcomeHome from "./components/Welcome";
-import UserAuthenticate from "./components/UserAuthenticate";
-import { useSelector } from "react-redux";
-import { getUserPlaylists } from "./redux/selectors/playlistSelector";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import AllPlaylists from "./components/AllPlaylists";
+import Search from "./components/Search";
+import LikedMusic from "./components/LikedMusic";
+import UserPlaylists from "./components/UserPlaylists";
+import PlaylistView from "./components/PlaylistView";
+import { db } from "./firebase";
+import { AuthGuard } from "./components/AuthGuard";
+import { AuthContainer } from "./components/AuthContainer";
 
-function App() {
-  let token = localStorage.getItem("token");
-  // const userPlaylists = useSelector(getUserPlaylists);
-  // console.log("userPlaylists", userPlaylists);
+const App = () => {
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/signin" component={AuthContainer} />
+        <AuthGuard exact path="/" component={AllPlaylists} />
+        <AuthGuard exact path="/search" component={Search} />
+        <AuthGuard exact path="/playlists/:id" component={PlaylistView} />
+        <AuthGuard exact path="/collection/musics" component={LikedMusic} />
+        <AuthGuard exact path="/collection/playlists" component={UserPlaylists} />
+      </Switch>
+    </Router>
+  );
+};
 
-  // return token ? <WelcomeHome /> : <UserAuthenticate />;
-  return <WelcomeHome />;
-  // return <UserAuthenticate />;
-}
 export default App;

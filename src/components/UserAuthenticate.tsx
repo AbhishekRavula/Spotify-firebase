@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useHistory, Redirect } from "react-router-dom";
-import "../styles/Welcome.css";
 import Button from "@material-ui/core/Button";
 import { HOSTNAME } from "../spotify.constants.js";
 import { useDispatch } from "react-redux";
