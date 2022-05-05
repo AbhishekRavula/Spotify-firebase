@@ -1,5 +1,5 @@
 #card-container {
-  background-color: rgba(40, 40, 40, 0.3);
+  background-color: rgba(102, 89, 89, 0.3);
   width: 230px;
   margin-top: 10px;
   margin-right: 10px;
@@ -39,7 +39,7 @@
 }
 
 #playlist_desc {
-  overflow: hidden;
+  /* overflow: hidden; */
   text-overflow: ellipsis;
   white-space: nowrap;
   color: rgb(179, 179, 179);

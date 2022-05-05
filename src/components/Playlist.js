@@ -5,10 +5,7 @@ export function Playlist(props) {
   const history = useHistory();
 
   return (
-    <div
-      id="card-container"
-      onClick={() => history.push(`/playlists/${props.id}`)}
-    >
+    <div id="card-container" onClick={() => history.push(`/playlists/${props.id}`)}>
       <div id="card-img">
         <img id="img" src={props.image} alt="playlist_cover"></img>
       </div>

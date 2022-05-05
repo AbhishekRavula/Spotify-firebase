@@ -11,9 +11,11 @@ const firebaseConfig = {
   projectId: "spotify-9aa6a",
   storageBucket: "spotify-9aa6a.appspot.com",
   messagingSenderId: "632935200021",
-  appId: "1:632935200021:web:894752b74a053aab83251c",
+  appId: "1:632935200021:web:894752b74a053aab83251c"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
+
+console.log("firebase.js");

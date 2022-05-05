@@ -1,0 +1,15 @@
+.wrapperContainer {
+  display: flex;
+  height: 100vh;
+  overflow: auto;
+}
+
+.sideNav {
+  position: sticky;
+  top: 0;
+  flex: 1.25;
+}
+
+.bodyContainer {
+  flex: 8.75;
+}

@@ -16,7 +16,7 @@
 }
 
 #songArtists {
-  overflow: hidden;
+  /* overflow: hidden; */
   text-overflow: ellipsis;
   white-space: nowrap;
   color: #b3b3b3;

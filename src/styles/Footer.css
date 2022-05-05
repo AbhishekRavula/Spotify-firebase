@@ -21,13 +21,13 @@
 }
 
 #footer_songTitle {
-  overflow: hidden;
+  /* overflow: hidden; */
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 #footer_songArtists {
-  overflow: hidden;
+  /* overflow: hidden; */
   text-overflow: ellipsis;
   white-space: nowrap;
   color: #b3b3b3;

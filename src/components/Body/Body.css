@@ -1,0 +1,15 @@
+.body-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  background-color: rgb(201, 179, 92);
+  flex-direction: column;
+}
+
+.main-content {
+  background-color: #121212;
+  min-height: 100vh;
+  padding: 0.5rem;
+}

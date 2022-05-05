@@ -20,16 +20,16 @@ function PlaylistView(props) {
   useEffect(() => {
     fetch(HOSTNAME + `playlists/${id}/`, {
       headers: {
-        Authorization: `Token ${token}`,
-      },
+        Authorization: `Token ${token}`
+      }
     })
-      .then((response) => {
+      .then(response => {
         return response.json();
       })
-      .then((jsonData) => {
+      .then(jsonData => {
         setPlaylistData(jsonData);
       })
-      .catch((err) => {
+      .catch(err => {
         console.error(err);
       });
   }, [id]);
@@ -44,9 +44,9 @@ function PlaylistView(props) {
   }, [playlistData]);
 
   useEffect(() => {
-    if (playlistData) {
+    if (playlistData && playlistData.music) {
       let newPlaylist = new CustomEvent("newPlaylist", {
-        detail: { noOfSongs: playlistData.music.length, playlistId: id },
+        detail: { noOfSongs: playlistData.music.length, playlistId: id }
       });
       document.dispatchEvent(newPlaylist);
     }
@@ -60,21 +60,21 @@ function PlaylistView(props) {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`,
+        Authorization: `Token ${token}`
       },
       body: JSON.stringify({
         music: [data],
-        remove_music: remove,
-      }),
+        remove_music: remove
+      })
     };
     fetch(HOSTNAME + `playlists/${playlistData.id}/`, requestOptions)
-      .then((response) => {
+      .then(response => {
         return response.json();
       })
-      .then((json) => {
+      .then(json => {
         setmusicData(json.music);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }
@@ -94,29 +94,29 @@ function PlaylistView(props) {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Token ${token}`,
+        Authorization: `Token ${token}`
       },
       body: JSON.stringify({
         name: name,
         description: description,
-        created_by: props.created_by,
-      }),
+        created_by: props.created_by
+      })
     };
     fetch(HOSTNAME + `playlists/${playlistData.id}/`, requestOptions)
-      .then((response) => {
+      .then(response => {
         return response.json();
       })
-      .then((json) => {
+      .then(json => {
         setname(json.name);
         setdescription(json.description);
       });
     handleClose();
   }
 
-  const setPlaylistName = (newName) => {
+  const setPlaylistName = newName => {
     setname(newName);
   };
-  const setPlaylistDescription = (newDesc) => {
+  const setPlaylistDescription = newDesc => {
     setdescription(newDesc);
   };
 
@@ -134,29 +134,23 @@ function PlaylistView(props) {
           display: "flex",
           marginLeft: "10px",
           color: "#9A9B9C",
-          marginTop: "20px",
-        }}
-      >
+          marginTop: "20px"
+        }}>
         <div id="ash">#</div>
         <div id="title">Title</div>
         <div id="album">Album</div>
       </div>
       <div>
-        {musicData.map((song, index) => {
-          return (
-            <div>
-              <Song
-                song={song}
-                index={index + 1}
-                noOfSongs={musicData.length}
-                updateMusicData={updateMusicData}
-              />
-            </div>
-          );
-        })}
-        {props.created_by !== "SpotifyAdmin" && (
-          <h5>Let's Find Some Songs For Your Playlist</h5>
-        )}
+        {musicData &&
+          musicData.length > 0 &&
+          musicData.map((song, index) => {
+            return (
+              <div>
+                <Song song={song} index={index + 1} noOfSongs={musicData.length} updateMusicData={updateMusicData} />
+              </div>
+            );
+          })}
+        {props.created_by !== "SpotifyAdmin" && <h5>Let's Find Some Songs For Your Playlist</h5>}
         <EditPlaylistDetailsModal
           image={playlistData && playlistData.image}
           setPlaylistDescription={setPlaylistDescription}
@@ -167,9 +161,7 @@ function PlaylistView(props) {
           savePlaylistDetails={savePlaylistDetails}
           {...playlistData}
         />
-        {props.created_by !== "SpotifyAdmin" && (
-          <Search add={true} {...props} updateMusicData={updateMusicData} />
-        )}
+        {props.created_by !== "SpotifyAdmin" && <Search add={true} {...props} updateMusicData={updateMusicData} />}
       </div>
     </div>
   );
