@@ -1,5 +1,5 @@
-import React, { Component, useEffect, useParams, useState } from "react";
-import "../styles/Footer.css";
+import React, { Component, useEffect, useState } from "react";
+import "./Footer.css";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
@@ -15,11 +15,10 @@ import RepeatOneIcon from "@material-ui/icons/RepeatOne";
 function Footer() {
   const [shuffle, setshuffle] = useState(false);
   const [currentSongDetails, setcurrentSongDetails] = useState(null);
-  const [currentPlaylistShuffleList, setcurrentPlaylistShuffleList] =
-    useState(null);
+  const [currentPlaylistShuffleList, setcurrentPlaylistShuffleList] = useState(null);
   const [currentPlaylist, setcurrentPlaylist] = useState({
     id: null,
-    noOfSongs: 0,
+    noOfSongs: 0
   });
   const [shuffleListIndex, setshuffleListIndex] = useState(0);
   const [isPlaying, setisPlaying] = useState(false);
@@ -30,18 +29,18 @@ function Footer() {
 
   const useStyles = makeStyles({
     root: {
-      width: 300,
-    },
+      width: 300
+    }
   });
   const classes = useStyles();
 
-  let footerSongInfo = (e) => {
+  let footerSongInfo = e => {
     setrepeat(false);
     setcurrentSongDetails({
       name: e.detail.name,
       artists: e.detail.artists,
       cover: e.detail.cover,
-      index: e.detail.index,
+      index: e.detail.index
     });
     setisPlaying(true);
     setisaudio(!isaudio);
@@ -54,12 +53,12 @@ function Footer() {
     };
   }, [isaudio]);
 
-  const footerPlayPause = (play) => {
+  const footerPlayPause = play => {
     if (currentSongDetails) {
       play ? audio.play() : audio.pause();
     }
   };
-  const loopControl = (loop) => {
+  const loopControl = loop => {
     if (currentSongDetails) {
       if (loop) {
         audio.loop = true;
@@ -80,7 +79,7 @@ function Footer() {
   const playNextSong = () => {
     if (currentSongDetails) {
       let playNext = new CustomEvent("playNext", {
-        detail: { currentIndex: currentSongDetails.index },
+        detail: { currentIndex: currentSongDetails.index }
       });
       document.dispatchEvent(playNext);
     }
@@ -88,7 +87,7 @@ function Footer() {
   const playPreviousSong = () => {
     if (currentSongDetails) {
       let playNext = new CustomEvent("playPrev", {
-        detail: { currentIndex: currentSongDetails.index },
+        detail: { currentIndex: currentSongDetails.index }
       });
       document.dispatchEvent(playNext);
     }
@@ -109,7 +108,7 @@ function Footer() {
     }
   }, [isaudio]);
 
-  const getShuffleList = (noOfSongs) => {
+  const getShuffleList = noOfSongs => {
     let shuffleList = [];
     while (shuffleList.length != noOfSongs) {
       let newIndex = Math.floor(Math.random() * (noOfSongs + 1));
@@ -120,11 +119,11 @@ function Footer() {
     return shuffleList;
   };
 
-  const handleNoOfPlaylistSongs = (e) => {
+  const handleNoOfPlaylistSongs = e => {
     if (currentPlaylist.id != e.detail.playlistId) {
       setcurrentPlaylist({
         noOfSongs: e.detail.noOfSongs,
-        id: e.detail.playlistId,
+        id: e.detail.playlistId
       });
       if (shuffle) {
         setshuffleListIndex(0);
@@ -144,7 +143,7 @@ function Footer() {
   const playShuffleNextSong = () => {
     if (shuffleListIndex < currentPlaylist.noOfSongs) {
       let playShuffleNext = new CustomEvent("playShuffleNext", {
-        detail: { index: currentPlaylistShuffleList[shuffleListIndex] },
+        detail: { index: currentPlaylistShuffleList[shuffleListIndex] }
       });
       document.dispatchEvent(playShuffleNext);
       setshuffleListIndex(shuffleListIndex + 1);
@@ -163,18 +162,10 @@ function Footer() {
       <div id="footer_left">
         {currentSongDetails ? (
           <>
-            <img
-              id="footer_albumCover"
-              src={currentSongDetails && currentSongDetails.cover}
-              alt="cover"
-            />
+            <img id="footer_albumCover" src={currentSongDetails && currentSongDetails.cover} alt="cover" />
             <div id="footer_songInfo">
-              <strong id="footer_songTitle">
-                {currentSongDetails && currentSongDetails.name}
-              </strong>
-              <div id="footer_songArtists">
-                {currentSongDetails && currentSongDetails.artists.join(", ")}
-              </div>
+              <strong id="footer_songTitle">{currentSongDetails && currentSongDetails.name}</strong>
+              <div id="footer_songArtists">{currentSongDetails && currentSongDetails.artists.join(", ")}</div>
             </div>
           </>
         ) : (
@@ -184,39 +175,19 @@ function Footer() {
       <div id="footer_center">
         <div id="footer_center_controls">
           {shuffle ? (
-            <ShuffleIcon
-              style={{ color: "#3F51B5" }}
-              onClick={() => setshuffle(!shuffle)}
-            />
+            <ShuffleIcon style={{ color: "#3F51B5" }} onClick={() => setshuffle(!shuffle)} />
           ) : (
             <ShuffleIcon onClick={() => handleShuffle()} />
           )}
-          <SkipPreviousIcon
-            onClick={() =>
-              shuffle ? playShuffleNextSong() : playPreviousSong()
-            }
-          />
+          <SkipPreviousIcon onClick={() => (shuffle ? playShuffleNextSong() : playPreviousSong())} />
           {isPlaying ? (
-            <PauseCircleOutlineIcon
-              id="footer_icon"
-              fontSize="large"
-              onClick={() => footerPlayPause(false)}
-            />
+            <PauseCircleOutlineIcon id="footer_icon" fontSize="large" onClick={() => footerPlayPause(false)} />
           ) : (
-            <PlayCircleOutlineIcon
-              id="footer_icon"
-              fontSize="large"
-              onClick={() => footerPlayPause(true)}
-            />
+            <PlayCircleOutlineIcon id="footer_icon" fontSize="large" onClick={() => footerPlayPause(true)} />
           )}
-          <SkipNextIcon
-            onClick={() => (shuffle ? playShuffleNextSong() : playNextSong())}
-          />
+          <SkipNextIcon onClick={() => (shuffle ? playShuffleNextSong() : playNextSong())} />
           {repeat ? (
-            <RepeatOneIcon
-              style={{ color: "#3F51B5" }}
-              onClick={() => loopControl(false)}
-            />
+            <RepeatOneIcon style={{ color: "#3F51B5" }} onClick={() => loopControl(false)} />
           ) : (
             <RepeatIcon onClick={() => loopControl(true)} />
           )}
@@ -234,7 +205,7 @@ function Footer() {
   );
 }
 
-export default Footer;
+export { Footer };
 
 function VolumeControl(props) {
   const [mute, setmute] = useState(false);
@@ -259,20 +230,10 @@ function VolumeControl(props) {
   return (
     <>
       <Grid item>
-        {mute ? (
-          <VolumeOffIcon
-            onClick={(e) => handleVolume(e, localStorage.getItem("volume"))}
-          />
-        ) : (
-          <VolumeUpIcon onClick={(e) => handleVolume(e, 0)} />
-        )}
+        {mute ? <VolumeOffIcon onClick={e => handleVolume(e, localStorage.getItem("volume"))} /> : <VolumeUpIcon onClick={e => handleVolume(e, 0)} />}
       </Grid>
       <Grid item xs>
-        <Slider
-          value={seekvolume}
-          onChange={handleVolume}
-          aria-labelledby="continuous-slider"
-        />
+        <Slider value={seekvolume} onChange={handleVolume} aria-labelledby="continuous-slider" />
       </Grid>
     </>
   );
@@ -293,7 +254,7 @@ function SongProgressBar(props) {
     }
   };
 
-  const getMinSec = (seconds) => {
+  const getMinSec = seconds => {
     let sec = Math.floor(seconds);
     let min = Math.floor(sec / 60);
     min = min >= 10 ? min : "0" + min;
@@ -339,9 +300,7 @@ function SongProgressBar(props) {
           <Grid item xs>
             <Slider
               value={seekValue}
-              onChange={(e, newValue) =>
-                handleSeek(e, newValue, props.currentSongDetails)
-              }
+              onChange={(e, newValue) => handleSeek(e, newValue, props.currentSongDetails)}
               aria-labelledby="continuous-slider"
             />
           </Grid>

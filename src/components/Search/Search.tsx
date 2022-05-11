@@ -1,34 +1,34 @@
 import { useEffect, useState } from "react";
-import "../styles/Search.css";
+import "./Search.css";
 import MusicNoteIcon from "@material-ui/icons/MusicNote";
 import Button from "@material-ui/core/Button";
-import { HOSTNAME } from "../spotify.constants.js";
+// import { HOSTNAME } from "../spotify.constants.js";
 
-function Search(props) {
-  const [musicData, setmusicData] = useState("");
+export function Search(props) {
+  const [musicData, setmusicData] = useState([]);
   const [searchTerm, setsearchTerm] = useState("");
   const token = localStorage.getItem("token");
   let audio = document.getElementById("globalAudio");
 
   useEffect(() => {
-    fetch(HOSTNAME + "musics/", {
-      headers: {
-        Authorization: `Token ${token}`,
-        "Content-type": "application/json",
-      },
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((jsonData) => {
-        setmusicData(jsonData);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    // fetch(HOSTNAME + "musics/", {
+    //   headers: {
+    //     Authorization: `Token ${token}`,
+    //     "Content-type": "application/json",
+    //   },
+    // })
+    //   .then((response) => {
+    //     return response.json();
+    //   })
+    //   .then((jsonData) => {
+    //     setmusicData(jsonData);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   }, []);
 
-  const handleKeyDown = (event) => {
+  const handleKeyDown = event => {
     if (event.code === "Escape") {
       setsearchTerm("");
     }
@@ -38,17 +38,17 @@ function Search(props) {
     props.updateMusicData(song.url, false);
   }
 
-  const playSong = (song) => {
-    audio.currentTime = 0;
-    audio.pause();
-    audio.src = song.music_path;
-    audio.play();
+  const playSong = song => {
+    // audio.currentTime = 0;
+    // audio.pause();
+    // audio.src = song.music_path;
+    // audio.play();
     let songPlaying = new CustomEvent("songPlaying", {
       detail: {
         name: song.name,
         artists: song.artist,
-        cover: song.album.image,
-      },
+        cover: song.album.image
+      }
     });
     document.dispatchEvent(songPlaying);
   };
@@ -62,18 +62,16 @@ function Search(props) {
           placeholder="Search Songs.."
           value={searchTerm}
           onKeyDown={handleKeyDown}
-          onChange={(event) => {
+          onChange={event => {
             setsearchTerm(event.target.value);
           }}
         />
         {searchTerm.length > 0 &&
           musicData
-            .filter((song) => {
+            .filter(song => {
               if (searchTerm === "") {
                 return song;
-              } else if (
-                song.name.toLowerCase().includes(searchTerm.toLowerCase())
-              ) {
+              } else if (song.name.toLowerCase().includes(searchTerm.toLowerCase())) {
                 return song;
               }
             })
@@ -89,14 +87,11 @@ function Search(props) {
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "space-between",
-                        flex: "0.95",
-                      }}
-                    >
+                        flex: "0.95"
+                      }}>
                       <div id="searchItems" onClick={() => playSong(song)}>
                         <strong id="searchItemSongs">{song.name}</strong>
-                        <div id="searchItemSongArtists">
-                          {song.artist.join(", ")}
-                        </div>
+                        <div id="searchItemSongArtists">{song.artist.join(", ")}</div>
                       </div>
                       {props.add && (
                         <div onClick={() => addSongToPlaylist(song)}>
@@ -105,9 +100,8 @@ function Search(props) {
                             size="small"
                             style={{
                               color: "white",
-                              border: "1px solid white",
-                            }}
-                          >
+                              border: "1px solid white"
+                            }}>
                             Add
                           </Button>
                         </div>
@@ -121,5 +115,3 @@ function Search(props) {
     </div>
   );
 }
-
-export default Search;

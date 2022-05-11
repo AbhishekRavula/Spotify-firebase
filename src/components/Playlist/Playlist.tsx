@@ -1,4 +1,4 @@
-import "../styles/Playlist.css";
+import "./Playlist.css";
 import { useHistory } from "react-router-dom";
 
 export function Playlist(props) {
@@ -16,5 +16,3 @@ export function Playlist(props) {
     </div>
   );
 }
-
-export default Playlist;

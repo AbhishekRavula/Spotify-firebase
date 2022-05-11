@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Playlist } from "./Playlist";
-import Grid from "../libs/Grid";
-import { HOSTNAME } from "../spotify.constants.js";
+import { Playlist } from "../Playlist";
+import Grid from "../../libs/Grid";
+import { HOSTNAME } from "../../spotify.constants.js";
 import { getAuth } from "@firebase/auth";
 
 function AllPlaylists() {

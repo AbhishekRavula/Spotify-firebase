@@ -1,7 +1,7 @@
 import React, { ReactNode } from "react";
 import { SideNav } from "../SideNav/SideNav";
-import Footer from "../Footer";
-import { Logout } from "../UserAuthenticate";
+// import { Footer } from "../Footer";
+// import { Logout } from "../UserAuthenticate";
 import { Body } from "../Body";
 import "./Wrapper.css";
 // import "../styles/Welcome.css";

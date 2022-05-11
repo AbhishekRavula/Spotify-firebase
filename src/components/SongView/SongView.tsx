@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "../styles/SongView.css";
+import "./SongView.css";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
-import { HOSTNAME } from "../spotify.constants.js";
+import { HOSTNAME } from "../../spotify.constants.js";
 
 function IsLikedIcon(props) {
   if (props.songData.liked) {
@@ -19,7 +19,7 @@ function Song(props) {
   let audio = document.getElementById("globalAudio");
 
   const onPlaySong = () => {
-    setisPlaying(audio.src == songData.music_path);
+    // setisPlaying(audio.src == songData.music_path);
   };
   const onPauseSong = () => {
     setisPlaying(false);
@@ -125,24 +125,24 @@ function Song(props) {
   };
 
   const onSongClick = () => {
-    if (audio.src == songData.music_path) {
-      audio.paused ? audio.play() : audio.pause();
-    } else {
-      audio.currentTime = 0;
-      audio.pause();
-      audio.src = songData.music_path;
-      audio.play();
-      audio.loop = audio.loop ? false : audio.loop;
-      let songPlaying = new CustomEvent("songPlaying", {
-        detail: {
-          name: songData.name,
-          artists: songData.artist,
-          cover: songData.album.image,
-          index: props.index,
-        },
-      });
-      document.dispatchEvent(songPlaying);
-    }
+    // if (audio.src == songData.music_path) {
+    //   audio.paused ? audio.play() : audio.pause();
+    // } else {
+    //   audio.currentTime = 0;
+    //   audio.pause();
+    //   audio.src = songData.music_path;
+    //   audio.play();
+    //   audio.loop = audio.loop ? false : audio.loop;
+    //   let songPlaying = new CustomEvent("songPlaying", {
+    //     detail: {
+    //       name: songData.name,
+    //       artists: songData.artist,
+    //       cover: songData.album.image,
+    //       index: props.index,
+    //     },
+    //   });
+    //   document.dispatchEvent(songPlaying);
+    // }
   };
 
   return (

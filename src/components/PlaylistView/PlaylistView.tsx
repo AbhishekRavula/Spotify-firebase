@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "../styles/PlaylistView.css";
-import Song from "./SongView";
-import Search from "./Search";
-import PlaylistHeader from "./PlaylistHeader";
-import EditPlaylistDetailsModal from "../libs/EditPlaylistDetailsModal";
-import { HOSTNAME } from "../spotify.constants.js";
+// import "../styles/PlaylistView.css";
+import Song from "../SongView/SongView";
+import { Search } from "../Search/index";
+import { PlaylistHeader } from "../PlaylistHeader/index";
+import EditPlaylistDetailsModal from "../../libs/EditPlaylistDetailsModal";
+import { HOSTNAME } from "../../spotify.constants.js";
 
 function PlaylistView(props) {
   const [musicData, setmusicData] = useState([]);
@@ -14,25 +14,25 @@ function PlaylistView(props) {
   const [created_by, setcreated_by] = useState(null);
   const [open, setOpen] = useState(false);
   const token = localStorage.getItem("token");
-  const { id } = useParams();
+  // const { id } = useParams();
   const [playlistData, setPlaylistData] = useState(null);
 
-  useEffect(() => {
-    fetch(HOSTNAME + `playlists/${id}/`, {
-      headers: {
-        Authorization: `Token ${token}`
-      }
-    })
-      .then(response => {
-        return response.json();
-      })
-      .then(jsonData => {
-        setPlaylistData(jsonData);
-      })
-      .catch(err => {
-        console.error(err);
-      });
-  }, [id]);
+  // useEffect(() => {
+  //   fetch(HOSTNAME + `playlists/${id}/`, {
+  //     headers: {
+  //       Authorization: `Token ${token}`
+  //     }
+  //   })
+  //     .then(response => {
+  //       return response.json();
+  //     })
+  //     .then(jsonData => {
+  //       setPlaylistData(jsonData);
+  //     })
+  //     .catch(err => {
+  //       console.error(err);
+  //     });
+  // }, [id]);
 
   useEffect(() => {
     if (playlistData) {
@@ -44,12 +44,12 @@ function PlaylistView(props) {
   }, [playlistData]);
 
   useEffect(() => {
-    if (playlistData && playlistData.music) {
-      let newPlaylist = new CustomEvent("newPlaylist", {
-        detail: { noOfSongs: playlistData.music.length, playlistId: id }
-      });
-      document.dispatchEvent(newPlaylist);
-    }
+    // if (playlistData && playlistData.music) {
+    //   let newPlaylist = new CustomEvent("newPlaylist", {
+    //     detail: { noOfSongs: playlistData.music.length, playlistId: id }
+    //   });
+    //   document.dispatchEvent(newPlaylist);
+    // }
   }, [playlistData]);
 
   function updateMusicData(data, remove) {

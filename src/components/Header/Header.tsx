@@ -1,4 +1,4 @@
-import { Logout } from "../UserAuthenticate";
+// import { Logout } from "../UserAuthenticate";
 import "./Header.css";
 
 const Header = props => {
@@ -6,7 +6,7 @@ const Header = props => {
     <div className="HeaderContainer">
       <div className="text">Welcome {localStorage.getItem("username")}</div>
       <div>
-        <Logout />
+        {/* <Logout /> */}
       </div>
     </div>
   );

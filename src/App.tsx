@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import AllPlaylists from "./components/AllPlaylists";
-import Search from "./components/Search";
-import LikedMusic from "./components/LikedMusic";
+import AllPlaylists from "./components/AllPlaylists/AllPlaylists";
+import { Search } from "./components/Search/index";
+import { LikedMusic } from "./components/LikedMusic";
 import UserPlaylists from "./components/UserPlaylists";
-import PlaylistView from "./components/PlaylistView";
+import PlaylistView from "./components/PlaylistView/PlaylistView";
 import { db } from "./firebase";
 import { AuthGuard } from "./components/AuthGuard";
 import { AuthContainer } from "./components/AuthContainer";
